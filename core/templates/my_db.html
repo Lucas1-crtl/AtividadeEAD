@@ -46,6 +46,10 @@
 <body>
     <div class="container">
         <h2>Cadastro de Funcionários</h2>
+           <a href="{% url 'home' %}">
+        <button type="button" style="width: 150px;">🏠 Home</button>
+    </a>
+
         <form method="POST">
             {% csrf_token %}
             

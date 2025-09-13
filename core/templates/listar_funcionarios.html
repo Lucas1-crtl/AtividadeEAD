@@ -69,13 +69,18 @@
 </head>
 <body>
     <div class="container">
+        
+           <a href="{% url 'home' %}">
+        <button type="button" style="width: 150px;">🏠 Home</button>
+    </a>
+
         <h1>Funcionários Cadastrados</h1>
 
         {% if funcionarios %}
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>nome_completo</th>
                     <th>Setor</th>
                     <th>Cargo</th>
                 </tr>
@@ -83,7 +88,7 @@
             <tbody>
                 {% for funcionario in funcionarios %}
                 <tr>
-                    <td>{{ funcionario.nome }}</td>
+                    <td>{{ funcionario.nome_completo }}</td>
                     <td>{{ funcionario.setor }}</td>
                     <td>{{ funcionario.cargo }}</td>
                 </tr>
