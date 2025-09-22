@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de EPIs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-custom {
+            width: 100%;
+            margin: 6px 0;
+            font-weight: bold;
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        table {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h3 class="text-center mb-3">Lista de EPIs</h3>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Funcionário</th>
+                    <th>Status</th>
+                    <th>Última atualização</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for epi in epis %}
+                <tr>
+                    <td>{{ epi.nome }}</td>
+                    <td>{{ epi.descricao }}</td>
+                    <td>{{ epi.funcionario|default:"-" }}</td>
+                    <td>{{ epi.get_status_display }}</td>
+                    <td>{{ epi.ultima_atualizacao|date:"d/m/Y H:i" }}</td>
+                    <td>{{ epi.updated_at|default:"-" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Nenhum EPI cadastrado</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'cadastrar_epi' %}" class="btn btn-custom text-white">Cadastrar novo EPI</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary w-100 mt-2">Menu Principal</a>
+    </div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Funcionario
+from .models import Funcionario, EPI
 
 class FuncionarioForm(forms.ModelForm):
     class Meta:
@@ -12,5 +12,15 @@ class FuncionarioForm(forms.ModelForm):
             'telefone',
             'email',
             'epis_fornecidos',
-            'observacoes'
+            'observacoes',
+        ]
+
+class EPIForm(forms.ModelForm):
+    class Meta:
+        model = EPI
+        fields = [
+            'nome',
+            'descricao',
+            'status',
+            'funcionario',
         ]
