@@ -8,21 +8,38 @@
     <style>
         body {
             background-color: #f8f9fa;
+            background: url("https://img.freepik.com/fotos-premium/plano-de-fundo-de-engenharia-com-desenho-tecnico-e-compasso_64749-3508.jpg") no-repeat center center fixed;
+            background-size: cover;
+             margin: 0;
+            padding: 0;
         }
         .card {
             max-width: 500px;
             margin: 60px auto;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: #fff;
             text-align: center;
         }
+        .card h2, .card h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: #333;
+        }
+        .card h2 {
+            margin-bottom: 10px;
+        }
+        form {
+            text-align: left;
+        }
         .btn-custom {
-            width: 100%;
-            margin: 8px 0;
+            width: 80%;
+            margin: 8px auto;
             font-weight: bold;
             background-color: #007bff;
             border: none;
+            display: block;
         }
         .btn-custom:hover {
             background-color: #0056b3;
@@ -31,14 +48,16 @@
 </head>
 <body>
     <div class="card">
-        <h3 class="mb-4">Cadastrar EPI</h3>
+        <h2>Cadastrar EPI</h2>
+        <h4>Campos Engenharia Civil</h4>
+
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-custom text-white">Salvar</button>
-            <a href="{% url 'listar_epi' %}" class="btn btn-custom text-white">Voltar para Lista</a>
-            <a href="{% url 'home' %}" class="btn btn-secondary w-100 mt-2">Menu Principal</a>
         </form>
+
+        <a href="{% url 'home' %}" class="btn btn-secondary w-75 mt-2">Voltar ao Menu</a>
     </div>
 </body>
 </html>

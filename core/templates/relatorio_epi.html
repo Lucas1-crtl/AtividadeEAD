@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de EPIs</title>
+    <title>Relatório Geral</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,6 +35,15 @@
             color: #555;
         }
 
+        form input, 
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
         .btn {
             display: block;
             width: 100%;
@@ -54,14 +63,6 @@
 
         .btn:hover {
             background: #0056b3;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-        }
-
-        .btn-secondary:hover {
-            background: #5a6268;
         }
 
         table {
@@ -88,41 +89,61 @@
         .text-center {
             text-align: center;
         }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Lista de EPIs</h2>
+        <h2>Relatório Geral</h2>
         <h4>Campos Engenharia Civil</h4>
+
+        <form method="get">
+            <input type="text" name="colaborador" placeholder="Pesquisar colaborador">
+            <input type="text" name="epi" placeholder="Pesquisar equipamento">
+            <select name="status">
+                <option value="">-- Status --</option>
+                <option value="fornecido">Fornecido</option>
+                <option value="em_uso">Em uso</option>
+                <option value="emprestado">Emprestado</option>
+                <option value="devolvido">Devolvido</option>
+                <option value="danificado">Danificado</option>
+                <option value="perdido">Perdido</option>
+            </select>
+            <button type="submit" class="btn">Filtrar</button>
+        </form>
 
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Descrição</th>
                     <th>Funcionário</th>
+                    <th>EPI</th>
                     <th>Status</th>
-                    <th>Última atualização</th>
+                    <th>Última Atualização</th>
                 </tr>
             </thead>
             <tbody>
                 {% for epi in epis %}
                 <tr>
+                    <td>{{ epi.funcionario.nome_completo }}</td>
                     <td>{{ epi.nome }}</td>
-                    <td>{{ epi.descricao }}</td>
-                    <td>{{ epi.funcionario|default:"-" }}</td>
                     <td>{{ epi.get_status_display }}</td>
                     <td>{{ epi.ultima_atualizacao|date:"d/m/Y H:i" }}</td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="5" class="text-center">Nenhum EPI cadastrado</td>
+                    <td colspan="4" class="text-center">Nenhum registro encontrado</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <a href="{% url 'cadastrar_epi' %}" class="btn">➕ Cadastrar novo EPI</a>
         <a href="{% url 'home' %}" class="btn btn-secondary">🏠 Menu Principal</a>
     </div>
 </body>

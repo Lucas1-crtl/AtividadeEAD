@@ -17,7 +17,7 @@ class Funcionario(models.Model):
 class EPI(models.Model):
     STATUS_CHOICES = [
         ('fornecido', 'Fornecido'),
-        ('em_uso', 'Em uso'),
+        ('em uso', 'Em uso'),
         ('emprestado', 'Emprestado'),
         ('devolvido', 'Devolvido'),
         ('danificado', 'Danificado'),

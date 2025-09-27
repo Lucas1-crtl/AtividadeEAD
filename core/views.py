@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from .forms import FuncionarioForm, EPIForm
 from .models import Funcionario, EPI
+from .forms import RelatorioForm
 
 # Create your views here.
 
@@ -35,5 +36,23 @@ def cadastrar_epi(request):
     return render(request, 'cadastrar_epi.html', {'form': form})
 
 def listar_epi(request):
-    epis = EPI.objects.all()
+    epis = EPI.objects.select_related('funcionario').all()
     return render(request, 'listar_epi.html', {'epis': epis})
+
+def relatorio_epi(request):
+    query_nome = request.GET.get("colaborador", "").strip()
+    query_epi = request.GET.get("epi", "").strip()
+    query_status = request.GET.get("status", "").strip()
+
+    epis = EPI.objects.select_related("funcionario").all()
+
+    if query_nome:
+        epis = epis.filter(funcionario__nome_completo__icontains=query_nome)
+
+    if query_epi:
+        epis = epis.filter(nome__icontains=query_epi)
+
+    if query_status:
+        epis = epis.filter(status=query_status)
+
+    return render(request, "relatorio_epi.html", {"epis": epis})

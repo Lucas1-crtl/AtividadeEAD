@@ -24,3 +24,21 @@ class EPIForm(forms.ModelForm):
             'status',
             'funcionario',
         ]
+
+class RelatorioForm(forms.Form):
+    colaborador = forms.CharField(
+        required=False, 
+        label="colaborador", 
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    equipamento = forms.CharField(
+        required=False, 
+        label="equipamento", 
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    status = forms.ChoiceField(
+        required=False, 
+        label="status",
+        choices=[('', '--- Todos ---')] + EPI.STATUS_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )

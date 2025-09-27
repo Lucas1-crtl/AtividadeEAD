@@ -7,24 +7,26 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background: url("https://img.freepik.com/fotos-premium/plano-de-fundo-de-engenharia-com-desenho-tecnico-e-compasso_64749-3508.jpg") no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            max-width: 600px;
-            margin: 40px auto;
+            max-width: 700px;
+            margin: 60px auto;
             background: #fff;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #333;
+            font-size: 24px;
         }
 
         table {
@@ -34,13 +36,14 @@
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
             background: #f4f4f4;
+            font-weight: bold;
         }
 
         tr:hover {
@@ -56,23 +59,36 @@
             background: #007bff;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
             font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
         }
 
         .btn:hover {
             background: #0056b3;
         }
 
+        .btn-home {
+            width: 160px;
+            margin: 0 auto 20px auto;
+            display: block;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        p {
+            text-align: center;
+            color: #777;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        
-           <a href="{% url 'home' %}">
-        <button type="button" style="width: 150px;">🏠 Home</button>
-    </a>
+        <a href="{% url 'home' %}">
+            <button type="button" class="btn btn-home">🏠 Home</button>
+        </a>
 
         <h1>Funcionários Cadastrados</h1>
 
@@ -80,7 +96,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>nome_completo</th>
+                    <th>Nome Completo</th>
                     <th>Setor</th>
                     <th>Cargo</th>
                 </tr>
@@ -96,10 +112,10 @@
             </tbody>
         </table>
         {% else %}
-            <p style="text-align:center; color:#777;">Nenhum funcionário cadastrado.</p>
+            <p>Nenhum funcionário cadastrado.</p>
         {% endif %}
 
-        <a href="{% url 'cadastrar_funcionario' %}" class="btn">Cadastrar novo funcionário</a>
+        <a href="{% url 'cadastrar_funcionario' %}" class="btn">Cadastrar Novo Funcionário</a>
     </div>
 </body>
 </html>
