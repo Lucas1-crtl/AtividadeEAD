@@ -1,3 +1,8 @@
-from django.test import TestCase
+import pytest
+from django.urls import reverse
 
-# Create your tests here.
+
+def test_rota_retorna_home() :
+        url = reverse('home')
+        assert url == '/'
+        
